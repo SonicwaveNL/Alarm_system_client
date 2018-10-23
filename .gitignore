@@ -81,6 +81,13 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
+# Directories that are trash
+.idea
+.Scripts
+idea/
+Scripts/
+pyvenv.cfg
+
 # Environments
 .env
 .venv
