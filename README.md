@@ -1,4 +1,4 @@
-# Alarm system: Server
+# Alarm system: Client
 Hu Alarm system
 
 ## Before clone
@@ -6,6 +6,7 @@ Voordat we beginnen met het clonen van de repository moeten we naar de folder na
 ```
 cd <Folder location>
 ```
+
 Om eventueel een folder aan te maken in de huidige folder kunt u de volgende command gebruiken:
 ```
 mkdir <Folder name>
@@ -22,6 +23,13 @@ Nadat we de clone hebben binnengehaald moeten we nog 1 library downloaden die be
 ```
 pip3 install urlopen
 ```
+
+Ook moeten we aangeven met welk ip adress de client moet verbinden. Open daarom de de 'main.py' file en verander bovenin de volgende line code:
+```
+# Server settings
+hostname = "<Server IP>:5000"
+```
+
 
 ## Start application
 Nu we de clone hebben binnengehaald en de belangrijke libraries hebben gedownload kunnen we de server applicatie starten door de volgende command in de terminal te voeren:
