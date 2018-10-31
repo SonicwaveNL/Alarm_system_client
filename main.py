@@ -26,7 +26,7 @@ first_check = True
 
 # Setup of the connection to the server
 def httpconnect(action):
-    url='http://{}/{}'.format(hostname,action)
+    url = 'http://{}/{}'.format(hostname, action)
     try:
         print(urlopen(url).read().decode())
     except:
@@ -76,46 +76,37 @@ def switch_client(status):
 
 
 # Alarm of the client
-def switch_alarm(status):
-    while status:
+def switch_alarm():
+    alarm_status = 0
+
+    while alarm_status < 5:
         sleep(0.5)
         buzzer_alarm.on()
-        led_Red.on()
+        led_Red.off()
         sleep(0.5)
         buzzer_alarm.off()
-        led_Red.off()
+        led_Red.on()
+        alarm_status += 1
 
 
 # Sents a 'alarm: ON' state to the server
 def alarm_on():
-
     global alarm
 
-    switch_alarm(True)
-    alarm = True
+    switch_alarm()
+    alarm = False
     httpconnect('alarm/on')
 
 
 # Sents a 'alarm: OFF' state to the server
 def alarm_off():
-
     global alarm
 
-    switch_alarm(False)
-    alarm = False
+    alarm = True
     httpconnect('alarm/off')
 
 
-def server_on():
-    httpconnect('server/on')
-
-
-def server_off():
-    httpconnect('server/off')
-
-
 def progress():
-
     blink = 0
 
     while blink < 3:
@@ -144,12 +135,10 @@ while True:
         if client:
             sleep(.5)
             client_offline()
-            server_off()
 
         else:
             sleep(.5)
             client_online()
-            server_on()
 
     # Execute when red button is pressed
     if btn_alarm.is_pressed:
